@@ -232,11 +232,25 @@ class CPU:
             # Set the PC to the address stored in the given register.
                 self.pc = self.reg[reg_a]
 
+            #JEQ register
             elif instructions[i] == 'JEQ':
-                pass
+                #get the register a value
+                reg_a = self.ram[self.pc + 1]
+            # If equal flag is set (true), jump to the address stored in the given register.
+                if (self.flags & 0b00000001) == 1: 
+                    self.pc = self.reg[reg_a]
+                else:
+                    self.pc +=2
 
+            # JNE register
             elif instructions[i] == 'JNE':
-                pass    
+                 #get the register a value
+                reg_a = self.ram[self.pc + 1]  
+            # If E flag is clear (false, 0), jump to the address stored in the given register.
+                if (self.flags & 0b00000001) == 0: 
+                    self.pc = self.reg[reg_a]
+                else:
+                    self.pc +=2
 
             else: 
                 print(f"Unknown instruction {i}")
