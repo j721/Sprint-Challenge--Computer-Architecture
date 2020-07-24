@@ -74,6 +74,19 @@ class CPU:
 
         elif op == "MUL":               #multiply instruction
             self.reg[reg_a] *= self.reg[reg_b]
+        
+        #CMP instruction handled by the ALU, compares the values in two registers
+        # FL bits: 00000LGE
+        elif op == "CMP":
+            if self.reg[reg_a] == self.reg[reg_b]:
+                self.flag = 0b00000001  #Equal (E) flag 
+
+            elif self.reg[reg_a] < self.reg[reg_b]:
+                self.flag = 0b00000100 # Less (L) Flag 
+            
+            else:
+                self.flag = 0b00000010 # Greater than (G) Flag
+
         else:
             raise Exception("Unsupported ALU operation")
 
