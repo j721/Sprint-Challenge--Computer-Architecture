@@ -84,9 +84,12 @@ class CPU:
 
             elif self.reg[reg_a] > self.reg[reg_b]:
                 self.flags =  0b00000010 # Greater than (G) Flag
+
+            elif self.reg[reg_a] < self.reg[reg_b]:
+                self.flags = 0b00000100 # Less (L) flag     
             
-            else:
-                self.flags = 0b00000100 # Less (L) flag 
+            # else:
+            #     self.flags = 0b00000100 # Less (L) flag 
 
         else:
             raise Exception("Unsupported ALU operation")
