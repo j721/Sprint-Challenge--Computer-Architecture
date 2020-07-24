@@ -80,13 +80,13 @@ class CPU:
         # FL bits: 00000LGE
         elif op == "CMP":
             if self.reg[reg_a] == self.reg[reg_b]:
-                self.flag = 0b00000001  #Equal (E) flag 
+                self.flags = 0b00000001  #Equal (E) flag 
 
-            elif self.reg[reg_a] < self.reg[reg_b]:
-                self.flag = 0b00000100 # Less (L) Flag 
+            elif self.reg[reg_a] > self.reg[reg_b]:
+                self.flags =  0b00000010 # Greater than (G) Flag
             
             else:
-                self.flag = 0b00000010 # Greater than (G) Flag
+                self.flags = 0b00000100 # Less (L) flag 
 
         else:
             raise Exception("Unsupported ALU operation")
@@ -231,6 +231,7 @@ class CPU:
                 reg_a = self.ram[self.pc + 1]
             # Set the PC to the address stored in the given register.
                 self.pc = self.reg[reg_a]
+                return True
 
             #JEQ register
             elif instructions[i] == 'JEQ':
