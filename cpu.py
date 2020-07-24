@@ -15,6 +15,7 @@ class CPU:
         self.reg = [0] * 8      # 8 registers to store data
         self.pc = 0     #program counter acts as a pointer
         self.reg[SP] = 0xF4
+        self.flags = 0b00000000
 
     
     def ram_read(self, MAR):    # (MAR) Memory Address Register holds memory address/position we're reading from 
@@ -110,8 +111,11 @@ class CPU:
              0b01000101: 'PUSH',
              0b01010000: 'CALL',
              0b00010001: 'RET' ,
-             0b10100000: 'ADD' 
-
+             0b10100000: 'ADD',
+             0b10100111: 'CMP',
+             0b01010100: 'JMP',
+             0b01010101: 'JEQ',
+             0b01010110: 'JNE',
         }
 
         while running: 
