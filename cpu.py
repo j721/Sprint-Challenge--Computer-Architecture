@@ -65,14 +65,15 @@ class CPU:
         #     address += 1
 
 
-    def alu(self, op, reg_a, reg_b):        #arithmetic logic unit- responsible for math
-        """ALU operations."""
+    def alu(self, op, reg_a, reg_b):       
+        """ALU operations.  
+        Arithmetic logic unit- responsible for math"""
 
         if op == "ADD":
             self.reg[reg_a] += self.reg[reg_b]
         #elif op == "SUB": etc
 
-        elif op == "MUL":               #multiply instruction
+        elif op == "MUL": #multiply instruction
             self.reg[reg_a] *= self.reg[reg_b]
         
         #CMP instruction handled by the ALU, compares the values in two registers
@@ -218,10 +219,18 @@ class CPU:
                 self.pc = return_addr
             
             elif instructions[i] == 'CMP':
-                pass
+                reg_a = self.ram[self.pc + 1]
+                reg_b = self.ram[self.pc + 2]
 
+                self.alu('CMP', reg_a, reg_b)
+                self.pc +=3
+
+            #Jump to the address stored in the given register.
             elif instructions[i] == 'JMP':
-                pass
+                #get the register a value
+                reg_a = self.ram[self.pc + 1]
+            # Set the PC to the address stored in the given register.
+                self.pc = self.reg[reg_a]
 
             elif instructions[i] == 'JEQ':
                 pass
