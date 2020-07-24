@@ -4,6 +4,8 @@ import sys
 
 SP = 7
 
+HLT = 0b00000001
+
 class CPU:
     """Main CPU class."""
 
@@ -16,6 +18,8 @@ class CPU:
         self.pc = 0     #program counter acts as a pointer
         self.reg[SP] = 0xF4
         self.flags = 0b00000000
+        self.hlt: HLT
+        
 
     
     def ram_read(self, MAR):    # (MAR) Memory Address Register holds memory address/position we're reading from 
@@ -98,7 +102,7 @@ class CPU:
         elif op == "AND":
             self.reg[reg_a] = self.reg[reg_a] & self.reg[reg_b]
 
-        # This is an instruction handled by the ALU.
+
         # OR registerA registerB
         # Perform a bitwise-OR between the values in registerA and registerB, storing the result in registerA.
         elif op == "OR":
@@ -110,17 +114,33 @@ class CPU:
         elif op == "XOR":
            self.reg[reg_a] = self.reg[reg_a] ^ self.reg[reg_b]
 
+        #NOT register
+        # Perform a bitwise-NOT on the value in a register, storing the result in the register.
         elif op == "NOT":
-            pass    
+            register = self.reg[reg_a]
+            #store the result in register
+            value = self.reg[register]
+            self.reg[register] = ~value #bitwise-NOT operator
 
+        #Shift the value in registerA to the left by the number of bits specified in registerB, filling the low bits with 0.
         elif op == "SHL":
-            pass   
+            #value at register A is less than register B so shift to the left
+            self.reg[reg_a] << self.reg[reg_b] 
 
+        #Shift the value in registerA to the right by the number of bits specified in registerB, filling the high bits with 0.
         elif op == "SHR":
-            pass 
+            #value at register A is greater than register B so shift to the right
+            self.reg[reg_a] >> self.reg[reg_b]
 
+        #MOD registerA registerB
+        # Divide the value in the first register by the value in the second, storing the remainder of the result in registerA.
         elif op == "MOD":
-            pass 
+        # If the value in the second register is 0, the system should print an error message and halt.
+            if self.reg[reg_b] == 0: 
+                print("Cannot perform MOD")
+                self.hlt(reg_a, reg_b)
+            else:
+                self.reg[reg_a] %= self.reg[reg_b]
 
         else:
             raise Exception("Unsupported ALU operation")
@@ -293,6 +313,8 @@ class CPU:
                     self.pc = self.reg[reg_a]
                 else:
                     self.pc +=2
+
+            elif instructions
 
             else: 
                 print(f"Unknown instruction {i}")
