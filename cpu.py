@@ -314,7 +314,26 @@ class CPU:
                 else:
                     self.pc +=2
 
-            elif instructions
+            elif instructions[i] == 'AND':
+                pass
+
+            elif instructions[i] == 'OR':
+                pass
+
+            elif instructions[i] == 'XOR':
+                pass
+
+            elif instructions[i] == 'NOT':
+                pass
+
+            elif instructions[i] == 'SHL':
+                pass
+
+            elif instructions[i] == 'SHR':
+                pass
+
+            elif instructions[i] == 'MOD':
+                pass
 
             else: 
                 print(f"Unknown instruction {i}")
