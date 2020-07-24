@@ -92,14 +92,23 @@ class CPU:
             #     self.flags = 0b00000100 # Less (L) flag 
 
 
+        # This is an instruction handled by the ALU.
+        # AND registerA registerB
+        # Bitwise-AND the values in registerA and registerB, then store the result in registerA.    
         elif op == "AND":
-            pass
+            self.reg[reg_a] = self.reg[reg_a] & self.reg[reg_b]
 
+        # This is an instruction handled by the ALU.
+        # OR registerA registerB
+        # Perform a bitwise-OR between the values in registerA and registerB, storing the result in registerA.
         elif op == "OR":
-            pass
+            self.reg[reg_a] = self.reg[reg_a] | self.reg[reg_b]    
 
+        # This is an instruction handled by the ALU.
+        # XOR registerA registerB
+        # Perform a bitwise-XOR between the values in registerA and registerB, storing the result in registerA.
         elif op == "XOR":
-            pass
+           self.reg[reg_a] = self.reg[reg_a] ^ self.reg[reg_b]
 
         elif op == "NOT":
             pass    
