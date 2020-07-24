@@ -91,6 +91,28 @@ class CPU:
             # else:
             #     self.flags = 0b00000100 # Less (L) flag 
 
+
+        elif op == "AND":
+            pass
+
+        elif op == "OR":
+            pass
+
+        elif op == "XOR":
+            pass
+
+        elif op == "NOT":
+            pass    
+
+        elif op == "SHL":
+            pass   
+
+        elif op == "SHR":
+            pass 
+
+        elif op == "MOD":
+            pass 
+
         else:
             raise Exception("Unsupported ALU operation")
 
