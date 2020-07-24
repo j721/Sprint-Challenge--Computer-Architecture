@@ -315,25 +315,53 @@ class CPU:
                     self.pc +=2
 
             elif instructions[i] == 'AND':
-                pass
+                reg_a = self.ram[self.pc + 1]
+                reg_b = self.ram[self.pc + 2]
+
+                self.alu('AND', reg_a, reg_b)
+                self.pc +=3
 
             elif instructions[i] == 'OR':
-                pass
+                reg_a = self.ram[self.pc + 1]
+                reg_b = self.ram[self.pc + 2]
+
+                self.alu('OR', reg_a, reg_b)
+                self.pc +=3
 
             elif instructions[i] == 'XOR':
-                pass
+                reg_a = self.ram[self.pc + 1]
+                reg_b = self.ram[self.pc + 2]
+
+                self.alu('XOR', reg_a, reg_b)
+                self.pc +=3
 
             elif instructions[i] == 'NOT':
-                pass
+                reg_a = self.ram[self.pc + 1]
+                reg_b = self.ram[self.pc + 2]
+
+                self.alu('NOT', reg_a, reg_b)
+                self.pc +=3
 
             elif instructions[i] == 'SHL':
-                pass
+                reg_a = self.ram[self.pc + 1]
+                reg_b = self.ram[self.pc + 2]
+
+                self.alu('SHL', reg_a, reg_b)
+                self.pc +=3
 
             elif instructions[i] == 'SHR':
-                pass
+                reg_a = self.ram[self.pc + 1]
+                reg_b = self.ram[self.pc + 2]
+
+                self.alu('SHR', reg_a, reg_b)
+                self.pc +=3
 
             elif instructions[i] == 'MOD':
-                pass
+                reg_a = self.ram[self.pc + 1]
+                reg_b = self.ram[self.pc + 2]
+
+                self.alu('MOD', reg_a, reg_b)
+                self.pc +=3
 
             else: 
                 print(f"Unknown instruction {i}")
