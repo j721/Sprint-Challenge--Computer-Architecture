@@ -203,7 +203,19 @@ class CPU:
 
                 # Set the PC to the return address
                 self.pc = return_addr
-  
+            
+            elif instructions[i] == 'CMP':
+                pass
+
+            elif instructions[i] == 'JMP':
+                pass
+
+            elif instructions[i] == 'JEQ':
+                pass
+
+            elif instructions[i] == 'JNE':
+                pass    
+
             else: 
                 print(f"Unknown instruction {i}")
 
